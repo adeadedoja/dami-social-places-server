@@ -3,5 +3,5 @@
 #RESTFUL POST API for storing contact information and sending mail
 contact_store:
     path: /contact/store
-    controller: App\Dami\SocialPlacesBundle\SocialPlacesBundle::store
-    methods:    [POST]
+    controller: App\Dami\SocialPlacesBundle\Controller\ContactController::store
+    methods:    [GET]
