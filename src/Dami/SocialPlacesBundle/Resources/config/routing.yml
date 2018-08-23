@@ -1,0 +1,4 @@
+
+contact_store:
+    path: /contact/store
+    controller: App\Dami\SocialPlacesBundle\SocialPlacesBundle::store

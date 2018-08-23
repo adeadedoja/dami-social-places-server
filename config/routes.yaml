@@ -2,6 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-contact_store:
-    path: /contact/store
-    controller: App\Dami\SocialPlacesBundle\SocialPlacesBundle::store
+contact:
+    resource: "@SocialPlacesBundle/Resources/config/routing.yml"
+    prefix: /api
