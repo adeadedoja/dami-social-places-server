@@ -5,7 +5,6 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/mongodb-odm-bundle": "^3.4",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "*",
         "symfony/console": "*",
@@ -22,7 +21,8 @@
         "symfony/twig-bundle": "*",
         "symfony/validator": "*",
         "symfony/web-link": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "true/punycode": "^2.1"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
@@ -39,7 +39,6 @@
         },
         "sort-packages": true,
         "platform": {
-            "ext-mongo": "1.6.16"
         }
     },
     "autoload": {
