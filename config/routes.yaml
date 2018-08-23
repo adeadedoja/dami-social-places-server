@@ -2,6 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+#This redirects to the routing config file of the SocialPlacesBunle
 contact:
     resource: "@SocialPlacesBundle/Resources/config/routing.yml"
     prefix: /api
