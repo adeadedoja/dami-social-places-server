@@ -67,14 +67,6 @@ class SocialPlacesBundle extends Bundle
         return $this->setStatusCode(201)->respond($data);
     }
 
-    protected function getDoctrine()
-{
-    if (!$this->container->has('doctrine')) {
-        throw new \LogicException('The DoctrineBundle is not registered in your application.');
-    }
-
-    return $this->container->get('doctrine');
-}
 
     public function store(Request $request, ContactRepository $contactRepository ){
         // persist the new contact
@@ -88,8 +80,41 @@ class SocialPlacesBundle extends Bundle
         $em->persist($contact);
         $em->flush();
 
+        return $this->respond([
+            [
+                'name' => $request->get('name')
+            ]
+        ]);
+    }
 
-        return $this->respondCreated($contactRepository->transform($request));
+    public function index($name, \Swift_Mailer $mailer)
+    {
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo('recipient@example.com')
+            ->setBody(
+                $this->renderView(
+                    // templates/emails/registration.html.twig
+                    'emails/registration.html.twig',
+                    array('name' => $name)
+                ),
+                'text/html'
+            )
+            /*
+            * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'emails/registration.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/plain'
+            )
+            */
+        ;
+
+        $mailer->send($message);
+
+        return $this->render(...);
     }
 }
 
