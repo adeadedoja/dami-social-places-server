@@ -4,4 +4,4 @@
 contact_store:
     path: /contact/store
     controller: App\Dami\SocialPlacesBundle\Controller\ContactController::store
-    methods:    [GET]
+    methods:    [POST]
