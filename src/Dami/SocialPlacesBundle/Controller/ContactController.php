@@ -23,15 +23,18 @@ class ContactController extends AbstractController
      *
      */
     public function store(MailController $mailController, ApiController $apiController, Request $request){
+        //get request into array
+        $data = json_decode($request->getContent(), true);
+        
         // persist the new contact
         $contact = new Contact;
 
         //set form data
-        $contact->setName($request->get('name'));
-        $contact->setEmail($request->get('email'));
-        $contact->setPhone($request->get('email'));
-        $contact->setSubject($request->get('email'));
-        $contact->setMessage($request->get('email'));
+        $contact->setName($data['name']);
+        $contact->setEmail($data['email']);
+        $contact->setPhone($data['phone']);
+        $contact->setSubject($data['subject']);
+        $contact->setMessage($data['message']);
 
         //input data is added to database
         $em = $this->container->get('doctrine')->getManager();
@@ -39,12 +42,12 @@ class ContactController extends AbstractController
         $em->flush();
 
         //call sendMail method to send mail
-        $mailController->sendMail($request->get('name'), $request->get('email'));
+        $mailController->sendMail($data['name'], $data['email']);
 
         //return name for display
         return $apiController->respond([
             [
-                'name' => $request->get('name')
+                'name' => $data['name']
             ]
         ]);
 

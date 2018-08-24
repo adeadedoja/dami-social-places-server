@@ -6,4 +6,5 @@ nelmio_cors:
         allow_headers: ['Content-Type', 'Authorization']
         max_age: 3600
     paths:
-        '^/': ~
+        '^/api': ~
+        #only allow urls with the api prefix
