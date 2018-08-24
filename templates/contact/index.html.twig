@@ -1,20 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}{{ title }}!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
+<div class="contact">
+  <div class="row">
+    <div class="col-md-4 px-5 py-3">
+        <div class="d-flex flex-row align-items-center h-100">
+          <h2 class="contact__greeting"><span class="text-danger">We would love </span> to say Hi to you. <br/>Just because.</h2>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="contact__container">
+            <div class="contact__container__top text-center">
+                <img src="{{ asset('images/fall.svg') }}" class="img-fluid contact__container__top__img" alt="contact greeting image" />
+                <p><b>SocialPlaces</b> <span class="text-muted">Contact</span></p>
+            </div>
+            <div class="alert alert-success mb-2" role="alert">
+                <b>Howdy, . </b>Thanks for filling in the form, this message has been saved in the database and a message has been sent to you.
+            </div>
+            {% form_theme form 'bootstrap_4_layout.html.twig' %}
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <form class="contact__form">
+                <div>
+                    <div class="form-group">
+                      <div>    
+                          <label for="contactForm" class="text-danger">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                            </span> Please fill in contact details
+                          </label>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                        {{ form_errors(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'placeholder': 'Your name'} }) }}
+                  </div>
+                  <div class="form-group col-md-6">
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email, {'attr': {'placeholder': 'Your email'} }) }}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                        {{ form_errors(form.phone) }}
+                        {{ form_widget(form.phone, {'attr': {'placeholder': 'Your phone number'} }) }}
+                  </div>
+                  <div class="form-group col-md-6">
+                        {{ form_errors(form.subject) }}
+                        {{ form_widget(form.subject, {'attr': {'placeholder': 'Subject'} }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                        {{ form_errors(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder': 'Talk to us'} }) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+  </div>
 </div>
+
 {% endblock %}

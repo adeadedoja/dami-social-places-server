@@ -6,34 +6,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}Let's Explore Symfony 4{% endblock %}</title>
+    <title>{% block title %}Social Places{% endblock %}</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
-
-<header>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container">
-
-            <a class="navbar-brand" href="{{ path('all_contacts') }}">Home</a>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('all_contacts') }}">Hello Page</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
+<header class="py-2"></header>
 <main role="main" class="container main">
     {% block body %}{% endblock %}
 </main>
+<footer class="text-right pt-3">
+    <div class="pt-2 container border-top">
+        <p>
+            &copy; {{ "now"|date('Y') }} . <i class="fa fa-bullseye text-danger"></i>Symfony 4 App. <b>Built by Dami.</b>
+        </p>
+    </div>
+</footer>
+
 
 {% block javascripts %}{% endblock %}
 </body>
