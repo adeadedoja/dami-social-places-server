@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
@@ -17,29 +19,58 @@ class Contact
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $phone;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $subject;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @ORM\Column(type="text")
      */
     private $message;
+        
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+    
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime;
+        $this->updatedAt = new DateTime;
+    }
+
+    
 
     public function getId(): ?int
     {
@@ -103,6 +134,39 @@ class Contact
     {
         $this->message = $message;
 
+        return $this;
+    }
+
+       /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps(): void
+    {
+        $dateTimeNow = new DateTime('now');
+        $this->setUpdatedAt($dateTimeNow);
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt($dateTimeNow);
+        }
+    }
+    public function getCreatedAt() :?DateTime
+    {
+        return $this->createdAt;
+    }
+    
+    public function setCreatedAt(DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+    public function getUpdatedAt() :?DateTime
+    {
+        return $this->updatedAt;
+    }
+    
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }

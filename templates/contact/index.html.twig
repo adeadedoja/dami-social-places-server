@@ -20,6 +20,13 @@
             <div class="alert alert-success mb-2" role="alert">
                 <b>Howdy, . </b>Thanks for filling in the form, this message has been saved in the database and a message has been sent to you.
             </div>
+            {% if errors is defined %}
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             {% form_theme form 'bootstrap_4_layout.html.twig' %}
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             <form class="contact__form">
