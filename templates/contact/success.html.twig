@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}!{% endblock %}
+
+{% block body %}
+<div class="col-md-8 offset-md-2">
+    <div class="success__container">
+        <div class="success__image text-center">
+            <img src="{{ asset('images/high-five.svg') }}" class="img-fluid" alt="contact success image" />
+        </div>
+        <div class="text-center">
+            <h3 class="text-success">Congratulations!!</h3>
+            <div class="alert alert-success mb-2" role="alert">
+                <b>Howdy, {{ name }}. </b>Thanks for filling in the form, this message has been saved in the database and a mail has been sent to you.
+            </div>
+            <a class="btn btn-success text-white">Click here to view all submissions!</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

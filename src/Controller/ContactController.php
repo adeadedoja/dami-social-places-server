@@ -57,12 +57,23 @@ class ContactController extends AbstractController
             //call sendMail method to send mail
             $mailController->sendMail($contact->getName(), $contact->getEmail());
 
-            return $this->redirectToRoute('contact_add_success');
+            return $this->render('contact/success.html.twig', [
+                'name' => $contact->getName(),
+            ]);
         }
         
         return $this->render('contact/index.html.twig', [
-            'title' => 'Social Places Contact',
              'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function success()
+    {
+        return $this->render('contact/success.html.twig', [
+            'name' => 'dami',
         ]);
     }
 }

@@ -8695,6 +8695,20 @@ footer {
   -moz-box-shadow: 0px 0px 46px 0px #a8a8a8;
   box-shadow: 0px 0px 46px 0px #a8a8a8; }
 
+.success__container {
+  padding: 3rem;
+  margin-top: 150px;
+  background-color: #eef5f9;
+  -webkit-box-shadow: 0px 0px 46px 0px #a8a8a8;
+  -moz-box-shadow: 0px 0px 46px 0px #a8a8a8;
+  box-shadow: 0px 0px 46px 0px #a8a8a8; }
+
+.success__image {
+  margin-top: -150px; }
+
+.success__image img {
+  width: 300px; }
+
 .contact__container__top__img {
   max-width: 150px; }
 

@@ -12,8 +12,8 @@ new_contact:
     controller: App\Controller\ContactController::index
 
 contact_add_success:
-    path:         /
-    controller: App\Controller\ContactController::index
+    path:         /success
+    controller: App\Controller\ContactController::success
 
 all_contacts:
     path:         /
