@@ -13,7 +13,8 @@
             <div class="alert alert-success mb-2" role="alert">
                 <b>Howdy, {{ name }}. </b>Thanks for filling in the form, this message has been saved in the database and a mail has been sent to you.
             </div>
-            <a class="btn btn-success text-white">Click here to view all submissions!</a>
+            <a class="btn btn-success text-white" href="{{ path('contacts') }}">Click here to view all submissions! <i class="fa fa-terminal"></i></a>
+            <a class="btn btn-primary" href="{{ path('new_contact') }}">Go to contact form <i class="fa fa-chevron-right"></i> </a>
         </div>
     </div>
 </div>

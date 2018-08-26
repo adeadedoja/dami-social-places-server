@@ -58,7 +58,7 @@ class ContactController extends AbstractController
             $mailController->sendMail($contact->getName(), $contact->getEmail());
 
             return $this->render('contact/success.html.twig', [
-                'name' => $contact->getName(),
+                'name' => ucfirst($contact->getName()),
             ]);
         }
         
@@ -68,12 +68,14 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contacts", name="contacts")
      */
-    public function success()
+    public function contacts()
     {
-        return $this->render('contact/success.html.twig', [
-            'name' => 'dami',
+        $repository = $this->getDoctrine()->getRepository(Contact::class);
+        $contacts = $repository->findAll();
+        return $this->render('contact/contacts.html.twig', [
+            'contacts' => $contacts,
         ]);
     }
 }
