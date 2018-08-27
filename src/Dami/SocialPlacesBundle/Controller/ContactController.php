@@ -41,8 +41,10 @@ class ContactController extends AbstractController
         $em->persist($contact);
         $em->flush();
 
-        //call sendMail method to send mail
-        $mailController->sendMail($data['name'], $data['email']);
+        //call sendMail method to send mail to client to confirm
+        $mailController->sendMail($data['name'], $data['email'],'confirm');
+        //call sendMail method to send mail to admin to alert of new contact
+        $mailController->sendMail('admin', getenv('MAIL_ADMIN'),'contact-alert');
 
         //return name for display
         return $apiController->respond([
